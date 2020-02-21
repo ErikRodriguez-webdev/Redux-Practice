@@ -11,7 +11,13 @@ const PlayerList = (props) => {
 
   return (
     <div>
-      <PlayerCard />
+      {props.playersArray.map((item) => (
+        <PlayerCard
+          name={item.name}
+          rank={item.rank}
+          nickname={item.nickname}
+        />
+      ))}
     </div>
   );
 };

@@ -19,9 +19,9 @@ export const playerReducer = (state = initialState, action) => {
     case FETCH_DATA:
       return { ...state, isFetching: true };
     case FETCH_SUCCESS:
-      return { ...state, playersArray: [action.payload], isFetching: false };
+      return { ...state, playersArray: action.payload, isFetching: false };
     case FETCH_ERROR:
-      return { ...state, errors: [action.payload], isFetching: false };
+      return { ...state, errors: action.payload, isFetching: false };
     case POST_DATA:
       return { ...state, isPosting: true };
     case POST_SUCCESS:

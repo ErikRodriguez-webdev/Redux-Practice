@@ -8,13 +8,13 @@ export const POST_DATA = "POST_DATA";
 export const POST_SUCCESS = "POST_SUCCESS";
 export const POST_ERROR = "POST_ERROR";
 
-export const fetchPlayer = (dispatch) => {
+export const fetchPlayers = () => (dispatch) => {
   dispatch({ type: FETCH_DATA });
   axios
     .get("http://localhost:8888/players")
     .then((response) => {
       console.log(response.data);
-      dispatch({ type: FETCH_SUCCESS, payload: response.tat });
+      dispatch({ type: FETCH_SUCCESS, payload: response.data });
     })
     .catch((error) => {
       console.log(error);
@@ -22,16 +22,16 @@ export const fetchPlayer = (dispatch) => {
     });
 };
 
-export const postPlayers = (dispatch) => {
+export const postPlayers = (aPlayer) => (dispatch) => {
   dispatch({ type: POST_DATA });
   axios
-    .post("http://localhost:8888/players")
+    .post("http://localhost:8888/players", aPlayer)
     .then((response) => {
       console.log(response.data);
       dispatch({ type: POST_SUCCESS, payload: response.data });
     })
     .catch((error) => {
       console.log(error);
-      dispatch({ type: POST_ERROR, payload: error });
+      dispatch({ type: POST_ERROR, payload: error.response });
     });
 };

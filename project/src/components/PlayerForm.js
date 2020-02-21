@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 
-import { postPlayer } from "../actions/index";
+import { postPlayers } from "../actions/index";
 
 import { connect } from "react-redux";
 
-const [player, setPlayer] = useState({
-  name: "",
-  rank: "",
-  nickname: ""
-});
-
-const handleChanges = (event) => {
-  setPlayer({ [event.target.name]: event.target.value });
-};
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-  props.postPlayer(player);
-  setPlayer({
+const PlayerForm = (props) => {
+  const [player, setPlayer] = useState({
     name: "",
     rank: "",
     nickname: ""
   });
-};
 
-const PlayerForm = (props) => {
+  const handleChanges = (event) => {
+    setPlayer({ ...player, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.postPlayers(player);
+    setPlayer({
+      name: "",
+      rank: "",
+      nickname: ""
+    });
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -74,4 +74,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { postPlayer })(PlayerForm);
+export default connect(mapStateToProps, { postPlayers })(PlayerForm);
