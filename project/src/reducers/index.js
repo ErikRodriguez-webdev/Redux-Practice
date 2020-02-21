@@ -1,6 +1,7 @@
 export const initialState = {
   playersArray: [],
   isFetching: false,
+  isPosting: false,
   errors: ""
 };
 
